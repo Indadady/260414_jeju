@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="2026 여주 파티마성모병원 제주 힐링 투어">
     <meta property="og:description" content="어르신들의 편안하고 즐거운 봄날 제주 여행에 초대합니다. (1차: 04.14~16 / 2차: 04.21~23)">
-    <meta property="og:image" content="https://api.cdn.visitjeju.net/photomng/imgpath/202110/28/3e52eefc-ff60-4cfa-9bce-6cb0c74ca6b2.jpg">
+    <meta property="og:image" content="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/55/2f/60.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -73,40 +73,25 @@
             color: #6c757d; border-top: 1px solid #e9ecef; width: 100%;
         }
 
-        /* 🖨️ A4 한장 인쇄 전용 CSS (@media print) */
+        /* 🖨️ A4 한장 표 양식 인쇄 전용 CSS (@media print) */
         @media print {
-            @page { size: A4 portrait; margin: 15mm 12mm; }
+            @page { size: A4 portrait; margin: 15mm; }
             body { background: #fff; color: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             
-            /* 불필요한 영역 숨김 */
-            header, footer, #home, #welcome, #highlight, #hotel, #pretravel, #mynote { display: none !important; }
-            .tab-btn, .print-btn, .md\\:hidden { display: none !important; }
+            /* 웹 전용 모든 요소 숨김 */
+            header, main, footer, .system-powered { display: none !important; }
             
-            /* 일정표 영역 초기화 및 A4 최적화 */
-            #timeline { padding: 0 !important; background: #fff !important; }
-            #timeline > .container { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
-            #timeline .shadow-xl { box-shadow: none !important; padding: 0 !important; }
-            #timeline h2 { font-size: 22pt !important; margin-bottom: 20px !important; color: #000 !important; text-align: center; }
-            
-            /* 숨겨진 2, 3일차 탭 강제 활성화 */
-            .schedule-content { display: block !important; margin-bottom: 20px !important; page-break-inside: avoid; }
-            .schedule-content h3 { font-size: 14pt !important; border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 10px !important; color: #000 !important; }
-            
-            /* 그래픽 요소 제거 및 테이블형 레이아웃 변경 */
-            .timeline-item::before, .timeline-item .absolute { display: none !important; }
-            .schedule-content .relative.pl-8 { padding-left: 0 !important; }
-            .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 0 !important; }
-            
-            .timeline-item {
-                display: flex !important; flex-direction: row !important; align-items: center !important;
-                padding: 6px 0 !important; border-bottom: 1px dotted #ccc; margin-bottom: 0 !important;
-            }
-            .timeline-item > span.block { width: 90px; min-width: 90px; font-size: 11pt !important; font-weight: bold !important; color: #000 !important; margin: 0 !important; }
-            .timeline-item h4 { width: 200px; min-width: 200px; font-size: 12pt !important; font-weight: bold !important; color: #000 !important; margin: 0 !important; }
-            .timeline-item p { font-size: 11pt !important; color: #333 !important; margin: 0 !important; flex: 1; }
-            
-            /* 뱃지 살리기 */
-            .bg-blue-600 { background-color: #000 !important; color: #fff !important; border-radius: 4px !important; }
+            /* 인쇄 전용 표식 요소 보이기 */
+            #print-section { display: block !important; }
+
+            /* 인쇄용 표 스타일링 */
+            .print-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 10.5pt; }
+            .print-table th, .print-table td { border: 1px solid #000; padding: 10px; }
+            .print-table th { background-color: #f1f5f9 !important; font-weight: bold; text-align: center; }
+            .print-table td.center { text-align: center; }
+            .print-table td.bold { font-weight: bold; }
+            .print-table ul { margin: 0; padding-left: 20px; }
+            .print-table li { margin-bottom: 4px; }
         }
     </style>
 </head>
@@ -242,7 +227,7 @@
                         </div>
                     </div>
 
-                    <!-- Point 3: Food & Healing (요청하신 이미지로 교체 완료) -->
+                    <!-- Point 3: Food & Healing -->
                     <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 group hover:-translate-y-2 transition-transform duration-300">
                         <div class="h-48 bg-slate-200 relative overflow-hidden">
                             <img src="https://image.news1.kr/system/photos/2023/9/25/6233216/high.jpg/dims/optimize" alt="제주 미식" class="w-full h-full object-cover">
@@ -312,7 +297,7 @@
             </div>
         </section>
 
-        <!-- Itinerary Section (여기에 A4 인쇄 버튼 추가됨) -->
+        <!-- Itinerary Section (웹용 탭 형식) -->
         <section id="timeline" class="py-20 bg-slate-50">
             <div class="container mx-auto px-4">
                 
@@ -329,9 +314,9 @@
                 
                 <!-- Tab Navigation -->
                 <div class="max-w-4xl mx-auto flex mb-8 bg-white rounded-lg p-1 shadow-sm">
-                    <button class="tab-btn active flex-1 py-3 rounded-md font-bold text-sm md:text-base" onclick="showTab('day1', this)">1일차 (4/14, 4/21)</button>
-                    <button class="tab-btn flex-1 py-3 rounded-md font-bold text-sm md:text-base text-slate-500 hover:text-slate-700" onclick="showTab('day2', this)">2일차 (4/15, 4/22)</button>
-                    <button class="tab-btn flex-1 py-3 rounded-md font-bold text-sm md:text-base text-slate-500 hover:text-slate-700" onclick="showTab('day3', this)">3일차 (4/16, 4/23)</button>
+                    <button class="tab-btn active flex-1 py-3 rounded-md font-bold text-sm md:text-base" onclick="showTab('day1', this)">1일차 (화)</button>
+                    <button class="tab-btn flex-1 py-3 rounded-md font-bold text-sm md:text-base text-slate-500 hover:text-slate-700" onclick="showTab('day2', this)">2일차 (수)</button>
+                    <button class="tab-btn flex-1 py-3 rounded-md font-bold text-sm md:text-base text-slate-500 hover:text-slate-700" onclick="showTab('day3', this)">3일차 (목)</button>
                 </div>
 
                 <!-- Timeline Content -->
@@ -344,7 +329,6 @@
                             설레는 여행의 시작 (화요일)
                         </h3>
                         <div class="relative pl-8 space-y-8">
-                            <!-- Items -->
                             <div class="timeline-item relative">
                                 <div class="absolute -left-[41px] bg-white border-4 border-slate-300 w-5 h-5 rounded-full"></div>
                                 <span class="text-slate-500 font-bold text-sm block mb-1">오전</span>
@@ -602,6 +586,148 @@
             [System Powered by TOURMAKER] 본 스마트 가이드북은 **여주 파티마성모병원**의 기획과 <a href="http://tourmaker.kr" target="_blank" style="text-decoration: underline; font-weight: bold; color: #6c757d;">투어메이커</a>의 트래블 테크 기술 제휴로 제작되었습니다.
         </div>
     </footer>
+
+    <!-- 🖨️ 인쇄 전용 영역 (A4 한 장 표 양식) -->
+    <div id="print-section" style="display: none;">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="font-size: 22pt; margin: 0; padding: 0; font-weight: bold; color: #000;">여주 파티마성모병원 2박 3일 제주 힐링 투어</h1>
+            <p style="font-size: 11pt; margin: 8px 0 0 0; color: #333;">
+                일정: [1차] 26.04.14(화)~16(목) / [2차] 26.04.21(화)~23(목) | 담당: 투어메이커 이재명 (010-9443-7881)
+            </p>
+        </div>
+        
+        <table class="print-table">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">일자</th>
+                    <th style="width: 12%;">구분</th>
+                    <th style="width: 58%;">상세일정</th>
+                    <th style="width: 20%;">식사</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 1일차 -->
+                <tr>
+                    <td class="center bold" rowspan="4">1일차<br>(화)</td>
+                    <td class="center">오전</td>
+                    <td>
+                        <ul>
+                            <li>김포공항 도착 및 탑승수속 (11:00 시대 출발)</li>
+                            <li>제주공항 도착 (12:00 시대) 및 기사님 미팅</li>
+                        </ul>
+                    </td>
+                    <td class="center" rowspan="4">
+                        <b>중식</b><br>흑우 불고기 정식<br><br>
+                        <b>석식</b><br>회정식
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">오후</td>
+                    <td>
+                        <ul>
+                            <li><b>스카이워터쇼</b> (다이빙쇼, 공중곡예 관람)</li>
+                            <li><b>에코랜드 테마파크</b> (곶자왈 숲속 궤도열차 탑승)</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">석식</td>
+                    <td>
+                        <ul>
+                            <li>신선한 회정식으로 제주 바다의 맛 즐기기</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">숙박</td>
+                    <td>
+                        <ul>
+                            <li>아시아 호텔(4성급) 또는 동급 호텔 체크인 및 휴식</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <!-- 2일차 -->
+                <tr>
+                    <td class="center bold" rowspan="4">2일차<br>(수)</td>
+                    <td class="center">오전</td>
+                    <td>
+                        <ul>
+                            <li><b>카멜리아 힐</b> (동백꽃 테마 정원 및 온실 식물원)</li>
+                            <li><b>산방산 유람선</b> 탑승 (산방산과 용머리해안 절경 조망)</li>
+                        </ul>
+                    </td>
+                    <td class="center" rowspan="4">
+                        <b>조식</b><br>호텔식<br><br>
+                        <b>중식</b><br>갈치조림+고등어구이<br><br>
+                        <b>석식</b><br>흑돼지 구이
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">오후 (택1)</td>
+                    <td>
+                        <ul>
+                            <li><b>송악산 해안가</b> 걷기 또는 <b>오설록 녹차밭</b> 관람</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">오후 (택1)</td>
+                    <td>
+                        <ul>
+                            <li><b>아트서커스</b> 기예공연 또는 <b>더마파크</b> 기마공연 관람</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">숙박</td>
+                    <td>
+                        <ul>
+                            <li>호텔 도착 및 자유시간</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <!-- 3일차 -->
+                <tr>
+                    <td class="center bold" rowspan="3">3일차<br>(목)</td>
+                    <td class="center">오전</td>
+                    <td>
+                        <ul>
+                            <li><b>농수산 쇼핑센터</b> 방문 (제주 특산품 구매)</li>
+                            <li><b>제주 돌문화공원</b> (숲속 전기차 탑승하여 편안한 관람)</li>
+                        </ul>
+                    </td>
+                    <td class="center" rowspan="3">
+                        <b>조식</b><br>호텔식<br><br>
+                        <b>중식</b><br>토종닭 샤브샤브
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">오후</td>
+                    <td>
+                        <ul>
+                            <li><b>아로마 족욕</b> 또는 <b>녹차 족욕</b> (택 1) - 여행 피로 풀기</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">도착</td>
+                    <td>
+                        <ul>
+                            <li>14:00 시대: 제주공항 이동 및 탑승수속</li>
+                            <li>15:00 시대: 제주공항 출발</li>
+                            <li>16:00 시대: 김포공항 도착 및 해산 (안녕히 가십시오)</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top: 15px; font-size: 10pt; text-align: center; color: #555;">
+            ※ 본 일정표는 현지 사정(기상, 교통 등)에 따라 다소 변경될 수 있습니다. | <b>[TOURMAKER]</b>
+        </div>
+    </div>
+    <!-- 🖨️ 인쇄 전용 영역 끝 -->
 
     <!-- JavaScript Logic -->
     <script>
